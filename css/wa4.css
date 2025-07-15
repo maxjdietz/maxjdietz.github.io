@@ -13,14 +13,14 @@ html {
 
 /* Selectors to be matched up with rulesets */
 
-.card article img
+/* .card article img
 .card footer
 .card header
-.card
+.card */
 
 /* Rulesets to be matched up with selectors */
 
-{
+/* {
   width: 35em;
   height: 22em;
   margin: 5em auto;
@@ -42,4 +42,4 @@ html {
 {
   max-height: 100%
   float: right;
-}
+} */
