@@ -42,8 +42,8 @@ html {
 }
 .card footer, header
 {
-    height: 30px;
-    padding: 10px;
+    height: 1em;
+    padding: 0.33em;
 }
 
 .card article img
