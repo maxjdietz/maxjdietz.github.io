@@ -19,7 +19,7 @@ html {
 .card  */
 
 /* Rulesets to be matched up with selectors */
-.card
+/* .card
 {
   width: 35em;
   height: 22em;
@@ -46,8 +46,8 @@ html {
     padding: 0.33em;
 } */
 
-.card article img
+/* .card article img
 {
   max-height: 100%;
   float: right;
-} 
+}   */
