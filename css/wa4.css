@@ -42,6 +42,7 @@ html {
 }
 .card footer, header
 {
+    background-color: green;
     height: 1em;
     padding: 0.33em;
 }
@@ -49,5 +50,5 @@ html {
 .card article img
 {
   max-height: 100%;
-  float: left;
+  float: right;
 } 
