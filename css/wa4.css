@@ -42,7 +42,6 @@ html {
 }
 .card footer, header
 {
-    background-color: green;
     height: 1em;
     padding: 0.33em;
 }
