@@ -19,7 +19,7 @@ html {
 .card  */
 
 /* Rulesets to be matched up with selectors */
-/* .card
+.card
 {
   width: 35em;
   height: 22em;
@@ -28,7 +28,7 @@ html {
   border: 0.2em solid black;
   border-radius: 1.5em;
 }
-
+/*
 .card header
 {
   background-image: linear-gradient(to bottom,rgba(0,0,0,0.1), rgba(0,0,0,0));
