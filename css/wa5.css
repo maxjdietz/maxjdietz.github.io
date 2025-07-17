@@ -1,0 +1,81 @@
+article
+{
+    background-color: grey;
+    
+    position: relative;
+    justify-content: center;
+    border: 1mm solid black;
+    
+    
+    
+}
+html
+{
+    font-family: fantasy;
+}
+img 
+{
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 100%;
+    /* border: 0.5mm solid black; */
+   
+}
+label
+{   
+  position: absolute;
+  top: 5mm;
+  left: 5mm;
+  width: 100mm;
+  height: 20mm;
+  border-radius: 5px 30px 30px 5px;
+  font-family: fantasy;
+  font-size: 50px;
+  letter-spacing: 1px;
+  text-align: center; 
+  padding-top: 10px;
+  color: white;
+  
+  background-color: red;
+  border: 1mm solid black;  
+  background: linear-gradient(to left,
+   rgba(209, 17, 17, 0.5),
+   rgba(235, 36, 36, 1) 20%, rgba(235, 36, 36, 1) 80%, rgba(233, 26, 26, 1)); 
+}
+div
+{
+    top: 5mm;
+    right: 5mm;
+    width: 30mm;
+    height: 10mm;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    line-height: 15px;
+    padding-top: 5mm;
+    font-size: 50px;
+    background-color: rgb(207, 207, 102);
+    position: absolute;
+    border: 1mm, solid, black;
+      
+}
+.bottom
+{
+     display: block;
+    position: absolute;
+    top: 75mm;
+    bottom: 100mm;
+    font-size: 20px;
+    border: 1mm solid green;
+    background-color: black;
+    color: white;
+    display: block;
+    text-align: center;
+    width: 50%;
+    height: 100px;
+    line-height: 20px;
+    margin: 0mm;
+    max-height: 75%;
+    max-width: 75%;
+}
