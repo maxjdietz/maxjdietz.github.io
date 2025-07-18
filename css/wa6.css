@@ -1,0 +1,165 @@
+body {
+    background-color: #fff;
+    color: #333;
+    margin: 0;
+    font: 1.2em / 1.2 Arial, Helvetica, sans-serif;
+  }
+
+  img {
+      max-width: 100%;
+      display: block;
+      
+  }
+
+  
+  .logo {
+    font-size: 200%;
+    padding: 50px 20px;
+    margin: 0 auto;
+    max-width: 980px;
+  }
+  
+  .grid {
+    display: flex;
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 1000px;
+    
+    flex-direction: row;
+  }
+  
+  nav {
+    background-color: #000;
+    position: sticky;
+    top:0;
+    padding: 1em;
+    font-size: 20px;
+    
+
+  }
+  
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  #flex-parent
+  {
+  
+    display: flex;
+    flex-direction: row;
+    
+  }
+  #flex-parent a{
+    padding: 115px;
+     
+    text-align: center;
+    
+   
+    
+}
+  #order-1
+  {
+    order: 1;
+    text-align: center;
+
+    
+  }
+   #order-2
+  {
+    order: 2;
+    text-align: center;
+    
+  }
+    #order-3
+  {
+    order: 3;
+    text-align: center;
+  }
+  
+    #order-4
+  {
+   
+    order: 4;
+    text-align: center;
+  }
+  
+    #order-5
+  {
+    
+    text-align: center;
+    order: 5;
+  }
+  
+  
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: .5em 1em;
+  }
+  
+  .photos {
+    list-style: none;
+    margin: 10px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 2;
+    grid-template-rows: 3;
+    flex-direction: row;
+    gap: 1px;
+   
+
+  }
+  .photos #o1
+  {
+    grid-row-start: 0;
+    grid-row-end: 1;
+    grid-column-start: 0;
+    grid-column-end: 1;
+    width: 150px;
+  }
+    .photos #o2
+  {
+    grid-row-start: 0;
+    grid-row-end: 1;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    /* padding: 50px; */
+    width: 150px;
+  }
+    .photos #o3
+  {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 0;
+    grid-column-end: 1;
+    /* padding: 50px; */
+    width: 150px;
+  }
+    .photos #o4
+  {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 150px;
+  }
+    .photos #o5
+  {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 0;
+    grid-column-end: 1;
+    /* padding: 50px; */
+    width: 150px;
+  }
+
+
+
+
+  .feature {
+      width: 200px;
+      float: left; 
+      margin-right: 20px;
+  }
