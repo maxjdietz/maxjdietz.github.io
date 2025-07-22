@@ -1,0 +1,52 @@
+body{
+    background-color: khaki;
+}
+#box1{
+    width: 25vw;
+    height: 20vh;
+    background-color: indianred;
+    transition-property: background-color;
+    transition-duration: 2s;
+    transition-delay: 0.5s;
+}
+
+
+#box2{
+    width: 25vw;
+    height:20vh;
+    position: relative;
+    background-color: orangered;
+    animation-name: box2move;
+    animation-duration: 5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+
+}
+#box1:hover
+{
+    background-color: purple;
+}
+
+@keyframes box2move{
+    from{
+        translate: 0vw 0;
+
+    }
+    25%{
+        translate: 20vw 5vw;
+
+    }
+    50%{
+        translate: 40vw 0vw;
+        
+    }
+    75%{
+        translate: 20vw -5vw;
+        
+    }
+    to{
+        translate: 0vw 0vw;
+
+    }
+
+}
