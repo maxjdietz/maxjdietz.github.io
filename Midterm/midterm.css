@@ -44,8 +44,8 @@ nav ul {
   justify-content: center;
   
 }
-nav a{
-    border: 0.5mm solid rgb(32, 10, 10);
+nav li{
+      border: 0.5mm solid rgb(32, 10, 10);
     color: black;
     text-align: center;
     text-decoration: none;
@@ -58,7 +58,9 @@ nav a{
     transition-duration: 0.25s;
     
 }
-a:hover{
+nav a{
+  
+}li:hover{
     background-color: red;
 }
 
@@ -107,9 +109,9 @@ p{
     color: black;
     border-bottom: 2mm solid black;
 }
-.center{
+ .center{
     text-align: center;
-    font-size: 65%;
+    font-size: 60%;
     color: black;
 }
 @media screen and (max-width: 600px){
