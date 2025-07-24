@@ -65,8 +65,9 @@ a:hover{
 .infoBox{
     
     
-    border: 1mm solid red;
-    background-color: pink;;
+    border: 1mm solid orange;
+    background-color: black;
+    color: white;
     height: 75px;
     transition: all 0.5s;
     font-size: 150%;
@@ -74,22 +75,26 @@ a:hover{
     overflow: hidden;
     margin: 50px;
     border-radius: 25%;
+    
      
     
     /* display: inline-block; */
 }
 .infoBox:hover{
     border-color: black;
-    height: 300px;
+    height: 400px;
+    color: black;
     background-color: orange;
    
      border-radius: 0%;
     
 }
 
+
 h3{
 
     text-align: center;
+    
 }
 
 
@@ -98,10 +103,14 @@ p{
     padding-left: 10px;
 }
 
+.green{
+    color: black;
+    border-bottom: 2mm solid black;
+}
 #center{
     text-align: center;
-    font-size: 50%;
-    color: blue;
+    font-size: 65%;
+    color: black;
 }
 @media screen and (max-width: 600px){
     h3{
