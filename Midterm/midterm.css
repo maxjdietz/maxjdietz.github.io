@@ -107,7 +107,7 @@ p{
     color: black;
     border-bottom: 2mm solid black;
 }
-#center{
+.center{
     text-align: center;
     font-size: 65%;
     color: black;
