@@ -70,7 +70,7 @@ nav a{
     border: 1mm solid orange;
     background-color: black;
     color: white;
-    height: 75px;
+    height: 65px;
     transition: all 0.5s;
     font-size: 150%;
     padding-bottom: 10px;
@@ -96,6 +96,7 @@ nav a{
 h3{
 
     text-align: center;
+    font-size: 95%;
     
 }
 
@@ -115,15 +116,24 @@ p{
     color: black;
 }
 @media screen and (max-width: 600px){
+    .infoBox:hover{
+        overflow:scroll;
+    }
     h3{
-        font-size: 100%;
+        font-size: 65%;
     }
 }
 
 
 @media screen and (max-width: 400px){
+   .infoBox:hover{
+        overflow:scroll;
+        overflow-x: hidden;
+    }
     h3{
-        font-size: 70%;
+       
+        font-size: 50%;
+        overflow-x: hidden;
     }
 
 }
