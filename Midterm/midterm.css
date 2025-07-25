@@ -202,7 +202,7 @@ p{
     font-style: italic;
     color: black;
 }
-@media screen and (min-width: 800px){
+@media screen and (min-width: 1000px){
     .infoBox:hover{
     border-color: black;
     height: 600px;
@@ -211,11 +211,14 @@ p{
     overflow: auto;
   
      border-radius: 10%;
+        .rep .con .location .date{
+    text-align: center;
+   }
     
 }
 
 }
-@media screen and (max-width: 800px){
+@media screen and (max-width: 1000px){
        .infoBox{
     
    
@@ -236,15 +239,20 @@ p{
     h3{
         font-size: 65%;
     }
-    .rep .con .location .date{
-    text-align: center;
-   }
+    h1{
+        font-size: 300%;
+    }
    nav li{
     font-size: 60%;
    }
 }
 
-
+footer{
+    font-size: 400%;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 50px;
+}
 @media screen and (max-width: 400px){
    .infoBox{
     
@@ -267,6 +275,9 @@ p{
    }
    .nav .li{
     font-size: 25%;
+   }
+   h1{
+    font-size: 200%;
    }
         
      
