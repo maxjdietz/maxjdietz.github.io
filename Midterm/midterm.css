@@ -7,6 +7,7 @@ body{
      font-family: "Orbitron", sans-serif;
      padding: 0;
      margin: 0;
+     
 }
 
 
@@ -20,6 +21,7 @@ h1{
     margin: 10px;
     text-align:  center;
     font-size: 500%;
+    text-shadow: 5px 5px 5px orange;
    
 
    
@@ -37,7 +39,7 @@ nav{
    position: sticky;
     top: 0;
     
-    
+    box-shadow: 10px 10px 10px black;
     padding: .5em;
     background-color: rgb(38, 32, 32);
     border: 1mm solid orange;
@@ -87,10 +89,12 @@ a{
     color: black;
     padding: 0px;
     transition: all 0.5s;
+    scroll-margin-top: 50px;
 }
 a:visited{
     text-decoration: none;
     color: black;
+    
     
   
 }li:hover{
@@ -102,7 +106,7 @@ a:hover{
 
 .infoBox{
     
-    
+    box-shadow: 10px 10px 10px black;
     border: 1mm solid orange;
     background-color: black;
     color: white;
@@ -113,6 +117,9 @@ a:hover{
     overflow: hidden;
     margin: 75px;
     border-radius: 25%;
+    scroll-margin-top: 50px;
+    padding: 15px;
+    font-weight: strong;
    
     
     /* display: inline-block; */
@@ -141,23 +148,62 @@ p{
     padding-left: 10px;
 }
 
-.green{
-    color: black;
-    border-bottom: 2mm solid black;
+
+.date{
+     color: rgb(207, 252, 7);
+    
+    font-weight: bold;
+    font-size: 50%;
+    
+
 }
+.con{
+    color: rgb(212, 60, 60);
+    
+    font-weight: bold;
+    font-size: 50%;
+    
+
+
+}
+#concert1{
+    scroll-margin-top: 100px;
+
+}
+.rep{
+    color: rgb(61, 105, 22);
+    font-weight: bold;
+    
+    font-size: 50%;
+    
+
+}
+.location{
+    color: rgb(91, 91, 230);
+    font-weight: bold;
+   font-size: 50%;
+    
+  
+}
+.blue{
+    color: blue;
+  }  
  .center{
+    
     text-align: center;
     font-size: 60%;
+    font-family: Raleway;
+    font-style: italic;
     color: black;
 }
 @media screen and (min-width: 800px){
     .infoBox:hover{
     border-color: black;
-    height: 700px;
+    height: 600px;
     color: black;
     background-color: orange;
    
-     border-radius: 0%;
+     border-radius: 10%;
     
 }
 
