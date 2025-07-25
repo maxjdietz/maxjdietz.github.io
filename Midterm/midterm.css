@@ -214,6 +214,18 @@ p{
         .rep .con .location .date{
     text-align: center;
    }
+      .rep{
+    text-align: center;
+   }
+     .date{
+    text-align: center;
+   }
+     .con{
+    text-align: center;
+   }
+     .location{
+    text-align: center;
+   }
     
 }
 
@@ -234,6 +246,18 @@ p{
         margin: 50px;
         border-radius: 5%;
    
+   }
+      .rep{
+    text-align: center;
+   }
+     .date{
+    text-align: center;
+   }
+     .con{
+    text-align: center;
+   }
+     .location{
+    text-align: center;
    }
         
     h3{
@@ -270,7 +294,16 @@ footer{
         border-radius: 5%;
       
    }
-   .rep .con .location .date{
+   .rep{
+    text-align: center;
+   }
+     .date{
+    text-align: center;
+   }
+     .con{
+    text-align: center;
+   }
+     .location{
     text-align: center;
    }
    .nav .li{
