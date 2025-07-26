@@ -17,7 +17,7 @@ body{
 h1{
     
     border-bottom: 5mm solid black;
-    border-width: 50%;
+   
     margin: 10px;
     text-align:  center;
     font-size: 500%;
@@ -125,7 +125,7 @@ a:hover{
     border-radius: 25%;
     scroll-margin-top: 50px;
     padding: 15px;
-    font-weight: strong;
+   
    
     
     /* display: inline-block; */
@@ -202,19 +202,16 @@ p{
     font-style: italic;
     color: black;
 }
-@media screen and (min-width: 1000px){
+@media screen and (min-width: 1001px){
     .infoBox:hover{
     border-color: black;
     height: 600px;
     color: black;
     background-color: orange;
     overflow: auto;
-  
-     border-radius: 10%;
-        .rep .con .location .date{
-    text-align: center;
-   }
-      .rep{
+    border-radius: 10%;  
+    }
+   .rep{
     text-align: center;
    }
      .date{
@@ -226,39 +223,35 @@ p{
      .location{
     text-align: center;
    }
-    
 }
 
-}
-@media screen and (max-width: 1000px){
-       .infoBox{
-    
-   
+@media screen and (max-width: 1000px)
+{
+    .infoBox{
         border: 1mm solid black;
         background-color: orange;
         color: black;
         height: 400px;
-       overflow: auto;
+        overflow: auto;
         transition: all 0.5s;
         font-size: 150%;
         padding-bottom: 10px;
-        
+            
         margin: 50px;
         border-radius: 5%;
-   
-   }
+    }
       .rep{
     text-align: center;
-   }
+    }    
      .date{
     text-align: center;
-   }
+    }
      .con{
     text-align: center;
-   }
+    }
      .location{
     text-align: center;
-   }
+    }
         
     h3{
         font-size: 65%;
@@ -271,12 +264,7 @@ p{
    }
 }
 
-footer{
-    font-size: 400%;
-    text-align: center;
-    font-weight: bold;
-    padding-bottom: 50px;
-}
+
 @media screen and (max-width: 400px){
    .infoBox{
     
@@ -324,4 +312,10 @@ footer{
       
     }
 
+}
+footer{
+    font-size: 400%;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 50px;
 }
