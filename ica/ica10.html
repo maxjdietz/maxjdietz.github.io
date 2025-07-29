@@ -34,6 +34,7 @@
     <script> 
         const btn = document.getElementById("button1");
         const btn2 = document.getElementById("button2");
+        let x = 0;
         btn.addEventListener('mouseover', updateName);
         btn.addEventListener('mouseout', updateName2);
          btn2.addEventListener('mouseover', moveButton);
@@ -57,11 +58,23 @@
             
         }
         function moveButton(){
-            let top = random();
-            let left = random();
-            console.log(top);
-            console.log(left);
-            btn2.setAttribute("style", "position: relative; top:" + top + "; left:" + left + ";");
+            if (x===0){
+                btn2.setAttribute("style", 'position: relative; left: 500px; background-color: white; color: black;');
+            
+                btn2.textContent= "RIGHT";
+                x++;
+
+            }
+            else{
+                btn2.setAttribute("style", 'position: relative; left: 0px;');
+                btn2.setAttribute("style", "background-color: black; color: white;")
+                btn2.textContent= "LEFT";
+                x--;
+
+            }
+            
+
+            
         }
     </script>
     
