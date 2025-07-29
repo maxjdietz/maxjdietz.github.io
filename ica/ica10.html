@@ -13,7 +13,9 @@
         height: 50px;
         border-radius: 35%;
         font-size: 100%;
-        background-color: rgb(150, 231, 150);
+        background-color: black;
+        color: white;
+
 
     }
     .button2{
@@ -27,18 +29,25 @@
     }
 </style>
 <body>
-    <button class="button1" id="button1">Player 1: Max</button>
+    <button class="button1" id="button1">OFF</button>
     <button class="button2" id="button2">Player 1: Max</button>
     <script> 
         const btn = document.getElementById("button1");
         const btn2 = document.getElementById("button2");
         btn.addEventListener('mouseover', updateName);
+        btn.addEventListener('mouseout', updateName2);
          btn2.addEventListener('mouseover', moveButton);
 
 
         function updateName(){
            
-            btn.setAttribute("style", "background-color: blue")
+            btn.setAttribute("style", "background-color: white; color: black;")
+            btn.textContent= "ON";
+        }
+                function updateName2(){
+           
+            btn.setAttribute("style", "background-color: black; color: white;")
+            btn.textContent= "OFF";
         }
 
         function random(){
@@ -52,7 +61,7 @@
             let left = random();
             console.log(top);
             console.log(left);
-            btn2.setAttribute("style", `position: relative; top: ${top}; right: left`);
+            btn2.setAttribute("style", "position: relative; top:" + top + "; left:" + left + ";");
         }
     </script>
     
