@@ -3,7 +3,7 @@ h1 {
   font-size: 300%;
   text-align: center;
   font-style: italic;
-  text-shadow: 5px 5px 5px 10px;
+  
 }
 
 body {
@@ -17,17 +17,17 @@ body {
   top: 200px;
  
   transition: all, 0.5s;
-  border: 1mm solid red;
+  border: 1mm solid black;
   overflow: hidden;
   
 }
 img{
   width: 100%;
-  transition: all, 0.5;
+  
 }
 .full-img:hover{
   
-  border:3mm solid black;
+  border:3mm solid orange;
 }
 
 
@@ -52,7 +52,7 @@ img{
 
 
 button {
-  border: 0;
+
   background: orange;
   
   border: 1px solid #999;
@@ -64,12 +64,12 @@ button {
 
 .thumb-bar img {
   margin: 5px;
-  border: 1mm soid orange;
+  border: 1mm solid orange;
   width: 13%;
   transition: all, 0.5s;
   float: left;
   cursor: pointer;
 }
 .thumb-bar img:hover{
-  border: 2mm solid red;
+  border: 2mm solid black;
 }
