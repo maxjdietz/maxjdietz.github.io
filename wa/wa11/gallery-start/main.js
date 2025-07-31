@@ -3,17 +3,28 @@ const thumbBar = document.querySelector('.thumb-bar');
 
 const btn = document.querySelector('button');
 const overlay = document.querySelector('.overlay');
-
+const  fullImg = document.querySelector('.full-img');
 /* Declaring the array of image filenames */
 const imgArr = ["images/pic1.jpg","images/pic2.jpg","images/pic3.jpg","images/pic4.jpg", "images/pic5.jpg"];
 let brightChecker = 0;
 
+
+
+fullImg.addEventListener("mouseover", (event) => {
+
+    hover();
+});
 /* Declaring the alternative text for each image file */
 function displayImg(img){
     console.log(img);
    displayedImage.src = img.src;
     displayedImage.alt = img.alt;
     return;
+}
+
+
+function hover(){
+    fullImg.style.top = "0px";
 }
 
 
@@ -30,6 +41,7 @@ for (i = 0; i < 5; i++){
     });
     console.log("1");
 }
+
 
 function lightDark(lightChecker){
     console.log(lightChecker);

@@ -1,5 +1,6 @@
 h1 {
-  font-family: helvetica, arial, sans-serif;
+  font-family: fantasy;
+  font-size: 300%;
   text-align: center;
 }
 
@@ -11,18 +12,36 @@ body {
 .full-img {
   position: relative;
   display: block;
+  top: 200px;
   width: 640px;
   height: 480px;
+  transition: all, 0.5s;
+  border: 1mm dashed red;
+  
 }
+/* .full-img:hover{
+  top:0px;
+  border-color:black;
+} */
+
 
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 640px;
+  transition: all, 0.5s;
+  
   height: 480px;
+
   background-color: rgba(0,0,0,0);
 }
+.overlay:hover{
+  border-color:red;
+}
+
+
+
 
 button {
   border: 0;
@@ -36,8 +55,13 @@ button {
 }
 
 .thumb-bar img {
-  display: block;
-  width: 20%;
+  margin: 5px;
+  border: 1mm dashed orange;
+  width: 15%;
+  transition: all, 0.5;
   float: left;
   cursor: pointer;
+}
+.thumb-bar img:hover{
+  border: 1mm dashed red;
 }
