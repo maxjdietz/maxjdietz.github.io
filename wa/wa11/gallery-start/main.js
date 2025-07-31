@@ -5,7 +5,7 @@ const btn = document.querySelector('button');
 const overlay = document.querySelector('.overlay');
 const  fullImg = document.querySelector('.full-img');
 /* Declaring the array of image filenames */
-const imgArr = ["images/pic1.jpg","images/pic2.jpg","images/pic3.jpg","images/pic4.jpg", "images/pic5.jpg"];
+const imgArr = ["images/image1.png","images/image2.png","images/image3.png","images/image4.png", "images/image5.png", "images/image6.png"];
 let brightChecker = 0;
 
 
@@ -30,7 +30,7 @@ function hover(){
 
 
 /* Looping through images */
-for (i = 0; i < 5; i++){
+for (i = 0; i < 6; i++){
     const newImage = document.createElement("img");
     newImage.setAttribute('src',  imgArr[i]);
     newImage.setAttribute('alt', imgArr[i]);

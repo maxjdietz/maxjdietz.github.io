@@ -2,6 +2,8 @@ h1 {
   font-family: fantasy;
   font-size: 300%;
   text-align: center;
+  font-style: italic;
+  text-shadow: 5px 5px 5px 10px;
 }
 
 body {
@@ -13,26 +15,32 @@ body {
   position: relative;
   display: block;
   top: 200px;
-  width: 640px;
-  height: 480px;
+ 
   transition: all, 0.5s;
-  border: 1mm dashed red;
+  border: 1mm solid red;
+  overflow: hidden;
   
 }
-/* .full-img:hover{
-  top:0px;
-  border-color:black;
-} */
+img{
+  width: 100%;
+  transition: all, 0.5;
+}
+.full-img:hover{
+  
+  border:3mm solid black;
+}
 
 
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
-  width: 640px;
+  width: 1000px;
+  height: 1000px;
   transition: all, 0.5s;
+  overflow: hidden;
   
-  height: 480px;
+  
 
   background-color: rgba(0,0,0,0);
 }
@@ -45,8 +53,8 @@ body {
 
 button {
   border: 0;
-  background: rgba(150,150,150,0.6);
-  text-shadow: 1px 1px 1px white;
+  background: orange;
+  
   border: 1px solid #999;
   position: absolute;
   cursor: pointer;
@@ -56,12 +64,12 @@ button {
 
 .thumb-bar img {
   margin: 5px;
-  border: 1mm dashed orange;
-  width: 15%;
-  transition: all, 0.5;
+  border: 1mm soid orange;
+  width: 13%;
+  transition: all, 0.5s;
   float: left;
   cursor: pointer;
 }
 .thumb-bar img:hover{
-  border: 1mm dashed red;
+  border: 2mm solid red;
 }
