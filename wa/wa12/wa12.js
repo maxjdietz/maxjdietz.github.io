@@ -7,12 +7,14 @@ answerBtn.addEventListener("click", displayAnswer);
 
 
 // const endPoint = "https://trivia.cyberwisp.com/getrandomchristmasquestion";
-const url = 'https://api.weatherstack.com/current?access_key=a3ae167db0127ab838e4d5b73bf6a4c6&query=New Delhi';
+let endPoint = "https://dog.ceo/api/breed";
 const options = {
 	method: 'GET'
 };
 
 let json = ""; //global variable NOOOOWWWW
+let test = "/hound/images/random"
+endPoint = endPoint + test;
 
 
 // async function getQuote(){
@@ -40,12 +42,12 @@ let json = ""; //global variable NOOOOWWWW
 async function getQuote(){
     console.log("test");
     try {
-        const response = await fetch(url, options);
+        const response = await fetch(endPoint);
         if (!response.ok){
             throw Error(response.statusText);
         }
-        json = await response.text();
-        console.log(json);
+        json = await response.json();
+        console.log(json.message);
     } catch (error) {
         console.error(error);
     }
