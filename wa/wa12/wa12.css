@@ -14,13 +14,25 @@ body {
 
 
   img{
-    position: relative;
-    left: 50px;
+    position: fixed;
+    left: 35%;
     top: 15px;
     object-fit: contain;
     border: 1mm solid black;
    
   }
+  p {
+   position: fixed;
+   bottom: 0;
+   left: 5px;
+}
+
+.red{
+  color: red;
+  position: fixed;
+  bottom: 20px;
+}
+
 
  
 
@@ -61,12 +73,12 @@ body {
     cursor: pointer;
   }
   .search:hover{
-    background-color: white;
+   
  
     border-radius: 5%;
     
-    color: black;
-    border: 2mm solid black;
+   
+    border: 1mm solid darkgoldenrod;
   }
   
   body {

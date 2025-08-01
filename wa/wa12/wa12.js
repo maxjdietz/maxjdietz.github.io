@@ -29,6 +29,7 @@ function pageLoad(){
 }
 
 
+
 async function getDog(){
     let endPoint = "https://dog.ceo/api/breed/";
     let secLink = "/images/random"
@@ -49,7 +50,7 @@ async function getDog(){
 
     } catch (err){
         console.log(err);
-        alert("Failed to fetch a new trivia question");
+        alert("That dog breed doesn't exist, make sure you are not using spaces!");
     }
 
    
