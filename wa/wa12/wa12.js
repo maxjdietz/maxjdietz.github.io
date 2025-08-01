@@ -1,57 +1,82 @@
-const newQuote = document.querySelector("#js-new-quote");
-const answerBtn = document.querySelector("#js-tweet");
+const search = document.querySelector("#searchButton");
+const displayImg = document.querySelector(".display");
+const breed = document.getElementById('customname');
 
-newQuote.addEventListener("click", getQuote);
-answerBtn.addEventListener("click", displayAnswer);
+console.log(breed.value);
+
+search.addEventListener("click", getDog);
 
 
 
 // const endPoint = "https://trivia.cyberwisp.com/getrandomchristmasquestion";
-let endPoint = "https://dog.ceo/api/breed";
+
 const options = {
 	method: 'GET'
 };
 
 let json = ""; //global variable NOOOOWWWW
-let test = "/hound/images/random"
-endPoint = endPoint + test;
 
 
-// async function getQuote(){
-//     const answerArea = document.querySelector("#js-answer-text");
-//     answerArea.textContent = " ";
-//     // console.log("testing getQuote");
-//     try{
-//         const response = await fetch(endPoint);
-//         if (!response.ok){
-//             throw Error(response.statusText);
-//         }
-//         json = await response.json();
-//         // console.log(json.question);
-//         displayQuote(json.location);
 
-//     } catch (err){
-//         console.log(err);
-//         alert("Failed to fetch a new trivia question");
-//     }
-
-   
-// }
+function pageLoad(){
+    
+    const newImage = document.createElement("img");
+    newImage.setAttribute('src',  "https://images.dog.ceo/breeds/hound-afghan/n02088094_1234.jpg");
+    newImage.setAttribute('alt', "https://images.dog.ceo/breeds/hound-afghan/n02088094_1234.jpg");
+    displayImg.src= newImage.src;
+    displayImg.alt= newImage.src;
+    
+}
 
 
-async function getQuote(){
-    console.log("test");
-    try {
+async function getDog(){
+    let endPoint = "https://dog.ceo/api/breed/";
+    let secLink = "/images/random"
+    endPoint = endPoint + breed.value + secLink;
+
+    console.log(endPoint);
+    // const answerArea = document.querySelector("#js-answer-text");
+    // answerArea.textContent = " ";
+    // console.log("testing getQuote");
+    try{
         const response = await fetch(endPoint);
         if (!response.ok){
             throw Error(response.statusText);
         }
         json = await response.json();
-        console.log(json.message);
-    } catch (error) {
-        console.error(error);
+        // console.log(json.question);
+        displayDog(json.message);
+
+    } catch (err){
+        console.log(err);
+        alert("Failed to fetch a new trivia question");
     }
+
+   
 }
+function displayDog(message){
+    const newImage = document.createElement("img");
+    newImage.setAttribute('src',  message);
+    newImage.setAttribute('alt', message);
+        displayImg.src= newImage.src;
+    displayImg.alt= newImage.src;
+
+}
+
+
+// async function getQuote(){
+//     console.log("test");
+//     try {
+//         const response = await fetch(endPoint);
+//         if (!response.ok){
+//             throw Error(response.statusText);
+//         }
+//         json = await response.json();
+//         console.log(json.message);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 
 // async function getAnswer(){
 //     try{
@@ -77,14 +102,14 @@ function displayQuote(quote){
     quoteText.textContent = quote;
 
 }
-function displayAnswer(){
-    const answerText = json.answer;
-    const answerArea = document.querySelector("#js-answer-text");
-    answerArea.textContent = answerText;
+// function displayAnswer(){
+//     const answerText = json.answer;
+//     const answerArea = document.querySelector("#js-answer-text");
+//     answerArea.textContent = answerText;
 
 
-}
+// }
 
-getQuote()
+pageLoad();
 
 // endpoint for API
