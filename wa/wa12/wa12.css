@@ -17,7 +17,7 @@ body {
     position: fixed;
     left: 35%;
     top: 15px;
-    object-fit: contain;
+   
     border: 1mm solid black;
    
   }
@@ -109,4 +109,14 @@ body {
     padding: 20px 50px;
     min-height: 200px;
   }
+@media screen and (max-width: 800px) {
+  .red{
+    position: absolute;
+    bottom: 70px;
+  }
+  img{
+    width: 50%;
+  }
+  
+}
   
