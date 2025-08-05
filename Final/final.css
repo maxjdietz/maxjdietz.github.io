@@ -1,0 +1,43 @@
+html, body{
+    height: 100%;
+}
+
+body{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.power-bar{
+    position: absolute;
+    top: 50%;
+    right: 20%;
+    width: 80px;
+    height: 300px;
+    border: 1mm solid black;
+    justify-content:baseline;
+     transform: rotate(180deg);
+
+}
+.power-bar button{
+    position: absolute;
+    bottom: 0;
+    right: 25%;
+     transform: rotate(180deg);
+    
+
+}
+.power-bar .meter{
+    width: 100%;
+    height: 50%;
+    background-color: red;
+    transform: rotate(180deg);
+   
+}
+
+.number{
+    width: 80px;
+    height: 90px;
+    border: 1mm solid black;
+
+}
