@@ -1,11 +1,13 @@
 const powerButton = document.querySelector("button");
-const powerMeter = document.querySelector(".meter");
+const powerMeter = document.getElementById("meter");
 const powerLevel = document.querySelector(".number");
 const testButton = document.querySelector(".test");
 const line = document.querySelector(".line");
-const canvas = document.querySelector('.ballContainer');
+const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const phoneNumContainer = document.querySelector(".phoneNum")
+const bgColorCanvas = "rgba(46, 190, 53, 1)";
+
 
 const speed = 5;
 const speedOfMeter = 3;
@@ -107,7 +109,7 @@ function loop(){
 
   }
   
- ctx.fillStyle = "rgb(255 255 255)";
+ ctx.fillStyle = bgColorCanvas;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ball.draw();
   goal.draw();
@@ -123,55 +125,91 @@ function loop(){
 //STEP1---------------------------------------------------------
 powerButton.addEventListener("mousedown", powerBar); //hold down power button for power
 
+ let barHeight = 0;
+ let direction = 1;
+ const animationSpeed = 2;
+ const maxHeight = 100;
+let killSwitch = 0;
 
-async function powerBar(){
-  holdDown = true;
-  loopBar = 1;
-   
-    //for moving up and back down
-    let increase = 0; //for height of red meter
-     //ms for sleep func
-    while (holdDown === true){
-      //checks each loop to see if holdUp basically
-      powerButton.addEventListener("mouseup", () => {
-        holdDown = false;
-        loopBar = 2;
-        powerLvlFunc(increase);
-        increase = 0;
-       console.log("2nd");
-        powerButton.removeEventListener('mousedown', powerBar);
-      
-      }, { once: true });
-      
-   
-      //up
-      while(loopBar === 1){
+
+function powerBar(){
   
-        await sleep(speedOfMeter);
-        powerMeter.style.height = increase + "%";
-        if (increase == 100){
-          console
-          loopBar--;
-        }
-        increase++;
-
-      }//down
-        while(loopBar === 0){
-
-        await sleep(speedOfMeter);
-        powerMeter.style.height = increase + "%";
-        if (increase == 0){
-          loopBar++;
-        }
-        increase--;
-      }
-
+  powerButton.addEventListener("mouseup", () => {
+    console.log("power bar");
+    powerLvlFunc(barHeight);
+    killSwitch = 1;
+    powerButton.removeEventListener('mousedown', powerBar);
+      
+    }, { once: true });
+    if (killSwitch === 1)
+    {
+      console.assert("OJK WHAT")
+      return;
     }
-    console.log("TESTSETSTESTE")
-    return;
+  barHeight += direction * animationSpeed;
+
+
+  if (barHeight >= maxHeight){
+    barHeight = maxHeight;
+    direction = -1;
+  }
+  else if (barHeight <= 0){
+    barHeight = 0;
+    direction = 1;
+  }
+  powerMeter.style.height = barHeight + "%";
+  requestAnimationFrame(powerBar);
+  
+}
+
+// async function powerBar2(){
+//   holdDown = true;
+//   loopBar = 1;
+   
+//     //for moving up and back down
+//     let increase = 0; //for height of red meter
+//      //ms for sleep func
+//     while (holdDown === true){
+//       //checks each loop to see if holdUp basically
+//       powerButton.addEventListener("mouseup", () => {
+//         holdDown = false;
+//         loopBar = 2;
+//         powerLvlFunc(increase);
+//         increase = 0;
+//        console.log("2nd");
+//         powerButton.removeEventListener('mousedown', powerBar);
+      
+//       }, { once: true });
+      
+   
+//       //up
+//       while(loopBar === 1){
+  
+//         await sleep(speedOfMeter);
+//         powerMeter.style.height = increase + "%";
+//         if (increase == 100){
+//           console
+//           loopBar--;
+//         }
+//         increase++;
+
+//       }//down
+//         while(loopBar === 0){
+
+//         await sleep(speedOfMeter);
+//         powerMeter.style.height = increase + "%";
+//         if (increase == 0){
+//           loopBar++;
+//         }
+//         increase--;
+//       }
+
+//     }
+//     console.log("TESTSETSTESTE")
+//     return;
     
 
-}
+// }
 let getDistance = function(x1, y1, x2, y2){
   var result = Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
   return result;
@@ -418,6 +456,7 @@ async function lineAnimation(){
     }
 
   }
+  killSwitch = 0;
   
   powerButton.addEventListener("mousedown", powerBar);
   console.log("HOLD IT")
