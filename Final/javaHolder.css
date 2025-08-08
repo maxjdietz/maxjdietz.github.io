@@ -1,0 +1,183 @@
+/* // async function powerBar2(){
+//   holdDown = true;
+//   loopBar = 1;
+   
+//     //for moving up and back down
+//     let increase = 0; //for height of red meter
+//      //ms for sleep func
+//     while (holdDown === true){
+//       //checks each loop to see if holdUp basically
+//       powerButton.addEventListener("mouseup", () => {
+//         holdDown = false;
+//         loopBar = 2;
+//         powerLvlFunc(increase);
+//         increase = 0;
+//        console.log("2nd");
+//         powerButton.removeEventListener('mousedown', powerBar);
+      
+//       }, { once: true });
+      
+   
+//       //up
+//       while(loopBar === 1){
+  
+//         await sleep(speedOfMeter);
+//         powerMeter.style.height = increase + "%";
+//         if (increase == 100){
+//           console
+//           loopBar--;
+//         }
+//         increase++;
+
+//       }//down
+//         while(loopBar === 0){
+
+//         await sleep(speedOfMeter);
+//         powerMeter.style.height = increase + "%";
+//         if (increase == 0){
+//           loopBar++;
+//         }
+//         increase--;
+//       }
+
+//     }
+//     console.log("TESTSETSTESTE")
+//     return;
+    
+
+// function update(goal) {
+ 
+      
+//   // ctx.clearRect(20, 20, canvas.width, canvas.height); // Clear canvas
+ 
+//   ball.x += ball.dx;
+//   ball.y += ball.dy;
+
+
+//         // Example: Bounce off walls (adjust as needed for your game logic)
+//     if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+//             ball.dx *= -1;
+//     }
+//     if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+//             ball.dy *= -1;
+//     }
+
+//     drawBall(); // Redraw the ball
+//     if(ballKill === 1){
+//       ctx.clearRect(0, 0, canvas.width, canvas.height); 
+//       return;
+      
+//     }
+//     console.log("testing: " + ball)
+//     requestAnimationFrame(update); // Continue the loop
+//     }
+
+    
+// function drawBall(){
+//   ctx.beginPath();
+//   ctx.arc(ball.x, ball.y, ball.radius, 0, 2*Math.PI );
+//   ctx.fillStyle = ball.color;
+//   ctx.fill();
+//   ctx.closePath()
+ 
+
+  
+// }
+    
+// async function lineAnimation2(){
+//   goal.x = getRandomInteger();
+//   goal.y = getRandomInteger();
+//   undraw = 0;
+//   ball.draw();
+//   goal.draw();
+//   line.style.visibility = "visible";
+//   ballKill = 0;
+//   loopChecker = 1;
+//   bounce = 0;
+//   angle = 90;
+
+  
+
+   
+  
+
+//   while (loopChecker === 1){
+    
+//     canvas.addEventListener('click', async function(event) {
+
+//       console.log("TEST")
+//         // Calculate direction towards mouse click
+//         loop();
+//         let rad = (angle - 90) * Math.PI / 180;
+//         let dirX = -Math.cos(rad);
+//         let dirY = -Math.sin(rad);
+
+//         console.log( ball.velY);
+//         ball.velX = dirX * speed;
+//         ball.velY = dirY * speed;
+//         console.log( ball.velX);
+//         console.log( "speed: " + speed );
+        
+
+//          line.style.visibility = "hidden";
+//         await sleep(1000);
+//         undraw = 1;
+//         ball.velX = 0;
+//         ball.velY = 0;
+        
+//         ballKill = 1;
+//           bounce = 2;
+//         loopChecker = 2;
+//         killSwitch = 1;
+//         barHeight = 0;
+//         powerButton.addEventListener("mousedown", powerBar);
+        
+        
+
+
+        
+       
+       
+
+
+//     }, { once: true });
+//     if (killSwitch2 === 1)
+
+//     while(bounce === 0){
+//       if (angle > 270)
+//       {
+//         bounce++;
+//       }
+//       else{
+//         angle++;
+//         await sleep(3);
+//         line.style.transform = "rotate(" + angle +"deg)";
+//       }
+//     while(bounce === 1){
+//       if (angle < 90)
+//       {
+//         bounce--;
+
+//       }
+//       else{
+//         angle--
+//         await sleep(3);
+        
+//         line.style.transform = "rotate(" + angle +"deg)";
+//       }
+//     }
+//     }
+
+//   }
+ 
+
+//   console.log("HOLD IT")
+
+ 
+ 
+ 
+//   return;
+  
+// }
+
+

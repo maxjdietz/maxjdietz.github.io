@@ -16,28 +16,30 @@ article{
     flex-direction: row;
     align-self: center;
     
+    margin-top: 3vw;
     justify-content: left;
     width: 50vw;
-    background-color: rgb(201, 158, 102);
+    background-color: rgb(0, 0, 0, .5);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 40px black;
     border-radius: 10%;
     overflow: hidden;
-    padding: 2vw
+    padding: 2vw;
    
 }
 canvas{
     
 }
 #gameCanvas{
+    
     display: flex;
     margin: 10px;
     align-items: left;
     justify-content: center;
     
     border-radius: 10%;
-    background-color: rgba(46, 190, 53, 1);
+    background-color: rgb(151, 168, 152);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 40px black;
-  
+    
     
     /* max-width:  400px;
     width: 100%;
@@ -45,10 +47,24 @@ canvas{
     height: 100%; */
 
 }
+#gameScreen{
+    position: absolute;
+        display: flex;
+    margin: 10px;
+    align-items: left;
+    justify-content: center;
+    width: 500px;
+    height: 500px;
+    border-radius: 10%;
+    /* background-color: rgba(8, 212, 32, 0.5); */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 40px black;
+    
+
+}
 .meterContainer
 {
-    margin-left: 5.7vw;
-    margin-top: 5vw;
+    margin-left: 1vw;
+    margin-top: 0.5vw;
   
     position: relative;
     align-items: center;
@@ -86,27 +102,69 @@ canvas{
 #powerButton{
    
     position: absolute;
-   
-    margin-left: 37.5vw;
-    margin-top: 24vw;
-    width: 9vw;
-    height: 4vw;
+   color: rgb(0, 0, 0);
+    margin-left: 32.75vw;
+    margin-top: 20vw;
+    width: 7vw;
+    height: 5vw;
     /* border-top-width: 3mm solid black; */
     /* transform: rotate(180deg); */
     background: red;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: bold;
 
- 
+    border: 0.5mm solid black;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 40px black;
     border-radius: 30%;
-    font-size: 150%;
+    font-size: 130%;
     
    
 
 }
+#charging{
+    visibility: hidden;
+        position: absolute;
+   color: rgb(0, 0, 0);
+   margin-left: 32.75vw;
+    margin-top: 20vw;
+     width: 7vw;
+    height: 5vw;
+    text-align: center;
+    line-height: 5vw;
+    font-size: 100%;
+    
+    /* border-top-width: 3mm solid black; */
+    /* transform: rotate(180deg); */
+    background: orange;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: bold;
+
+    border: 0.5mm solid black;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 40px black;
+    border-radius: 30%;
+    font-size: 100%;
+    color: black
+    
+
+}
 #powerButton:hover{
     transition: all 0.5s;
-    background-color: green;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 1), inset 0 0 40px black;
+    border-radius: 30%;
+    border: 1mm solid black;
+    color: white;
+}
+#Fire{
+    position: absolute;
+    width: 6vw;
+    height: 6vw;
+    margin-left: 33.25vw;
+    margin-top: 26vw;
+    border-radius: 50%;
+    color: grey;
+    background-color: black;
+      font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: bold;
 }
 
 

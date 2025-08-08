@@ -2,20 +2,24 @@ const powerButton = document.querySelector("button");
 const powerMeter = document.getElementById("meter");
 const powerLevel = document.querySelector(".number");
 const testButton = document.querySelector(".test");
+const fireButton = document.getElementById("Fire");
 const line = document.querySelector(".line");
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
+const recharge = document.getElementById("charging");
 const phoneNumContainer = document.querySelector(".phoneNum")
-const bgColorCanvas = "rgba(46, 190, 53, 1)";
+const bgColorCanvas = "rgba(121, 224, 131, 0.5)";
 
 
-const speed = 5;
+let speed = 5;
+let digitCounter = 0;
 const speedOfMeter = 3;
 let loopBar = 1;
 let holdDown = true;
 let angle = 90;
 let undraw = 0;
 let phoneNum = 0;
+
 
 function getRandomInteger() {
   min = Math.ceil(100); // Ensure min is an integer
@@ -42,15 +46,24 @@ class Goals{
    this.number = number;
   }
   draw(){
-  ctx.beginPath();
-  ctx.fillStyle = this.color;
-  ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
-  ctx.font = "30px fantasy";
-  ctx.textAlign = "center";
+   
   
-  ctx.fill();
-     ctx.strokeStyle = "black";
-    ctx.strokeText(phoneNum, goal.x , goal.y);
+   // Black shadow with 70% opacity
+
+    ctx.beginPath();
+    ctx.fillStyle = this.color;
+    ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
+    ctx.font = "25px fantasy";
+    ctx.textAlign = "center";
+    ctx.textBaseline = 'middle';
+    
+    ctx.fill();
+     ctx.strokeStyle = "rbga(0 0 0 0)";
+     
+    ctx.strokeText(this.number, this.x , this.y);
+    ctx.fillStyle = "white";
+    ctx.fillText(this.number, this.x , this.y);
+    ctx.stroke();
   }
 
 }
@@ -86,39 +99,102 @@ class Ball{
       this.y += this.velY;
       }
 }
+function random(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 let ball = new Ball(250, 450, 0, 0, "red", 20);
+let goal = new Goals(0, 0, 50, "green", phoneNum);
+let loopGoal = 0;
+const goalsZeroNine = [];
+const goalsXCoords = [50, 125, 100, 175, 150, 325, 400, 375, 450, 350]
+const goalsYCoords = [360, 200, 80, 80, 475, 80, 80, 200, 360, 475]
 
+while (goalsZeroNine.length < 10){
+  const size = 35;
+  const goalss = new Goals(
+  goalsXCoords[loopGoal],
+  goalsYCoords[loopGoal],
+  size,
+  "green",
+  loopGoal
+  );
+  loopGoal++;
+  goalsZeroNine.push(goalss);
+  console.log("INITIALIZING");
+}
+let backspace = new Goals(250, 50, 50, "grey", "delete");
+goalsZeroNine.push(backspace);
+
+let oldTextContent = phoneNumContainer.textContent;
 
 
 function loop(){
   if (undraw === 1){
-    ctx.clearRect(0, 0, canvas.width, canvas.height); 
-    ball.velX = 0;
-    ball.velY = 0 
-
-    ball.x = 250;
-    ball.y = 450;
+    // ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    resetBall(0, 12)
     return;
 
   }
-  else if((getDistance(ball.x, ball.y, goal.x, goal.y) < goal.radius)){
-    ball.velX = 0;
-    ball.velY =0;  
-    ball.x = 250;
-    ball.y = 450;
-    phoneNumContainer.textContent = phoneNumContainer.textContent + phoneNum;
-
+  for(i = 0; i < 10; i++){
+    if((getDistance(ball.x, ball.y, goalsZeroNine[i].x, goalsZeroNine[i].y) < goalsZeroNine[i].radius)){
+      resetBall(1, i);
+      digitCounter++;
+      if(digitCounter === 11)
+      {
+        alert("You have submitted the following phone number: " + phoneNumContainer.textContent);
+        
+      }
+        return;
   }
+
+}
+if ((getDistance(ball.x, ball.y, goalsZeroNine[10].x, goalsZeroNine[10].y) < goalsZeroNine[10].radius)){
+
+    phoneNumContainer.textContent = oldTextContent;
+    resetBall(0, 10);
+
+      return;
+}
+
   
+ 
+ 
  ctx.fillStyle = bgColorCanvas;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ball.draw();
-  goal.draw();
+  for (i = 0; i < 11; i++){
+    goalsZeroNine[i].draw();
+  }
   ball.update();
+  console.log("FUCK")
  
   requestAnimationFrame(loop);
 
   
+}
+function resetBall(num, index){
+  console.log("resetTEST")
+  if (num === 1){
+    oldTextContent = phoneNumContainer.textContent;
+      phoneNumContainer.textContent = phoneNumContainer.textContent + goalsZeroNine[index].number;
+  }
+  if (index !== 12){
+    goalsZeroNine[index].color = "red";
+    goalsZeroNine[index].draw();
+    
+
+  }
+        ball.velX = 0;
+    ball.velY = 0 
+ 
+    ball.x = 250;
+    ball.y = 450;
+    ball.draw();
+    
+   recharge.style.visibility = "hidden";
+   powerButton.addEventListener("mousedown", powerBar);
+   goalsZeroNine[index].color = "green";
+    
 }
 
 
@@ -133,13 +209,15 @@ powerButton.addEventListener("mousedown", powerBar); //hold down power button fo
 let killSwitch = 0;
 
 
+
 async function powerBar(){
   
   powerButton.addEventListener("mouseup", () => {
+    recharge.style.visibility = "visible";
      killSwitch = 1;
     console.log("power bar");
     powerButton.removeEventListener('mousedown', powerBar);
-   
+
    
     
     console.log("HERE?")
@@ -153,7 +231,7 @@ async function powerBar(){
       console.log("OJK WHAT")
        powerLvlFunc(barHeight);
        testingFunc();
-       await sleep(500);
+       
         powerMeter.style.height = 0 + "%";
       return;
     }
@@ -174,54 +252,7 @@ async function powerBar(){
   
 }
 
-// async function powerBar2(){
-//   holdDown = true;
-//   loopBar = 1;
-   
-//     //for moving up and back down
-//     let increase = 0; //for height of red meter
-//      //ms for sleep func
-//     while (holdDown === true){
-//       //checks each loop to see if holdUp basically
-//       powerButton.addEventListener("mouseup", () => {
-//         holdDown = false;
-//         loopBar = 2;
-//         powerLvlFunc(increase);
-//         increase = 0;
-//        console.log("2nd");
-//         powerButton.removeEventListener('mousedown', powerBar);
-      
-//       }, { once: true });
-      
-   
-//       //up
-//       while(loopBar === 1){
-  
-//         await sleep(speedOfMeter);
-//         powerMeter.style.height = increase + "%";
-//         if (increase == 100){
-//           console
-//           loopBar--;
-//         }
-//         increase++;
 
-//       }//down
-//         while(loopBar === 0){
-
-//         await sleep(speedOfMeter);
-//         powerMeter.style.height = increase + "%";
-//         if (increase == 0){
-//           loopBar++;
-//         }
-//         increase--;
-//       }
-
-//     }
-//     console.log("TESTSETSTESTE")
-//     return;
-    
-
-// }
 let getDistance = function(x1, y1, x2, y2){
   var result = Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
   return result;
@@ -233,7 +264,7 @@ function powerLvlFunc(power){
   let powerString = power.toString();
   if(power < 10){
      powerLevel.textContent = 0;
-     phoneNum = 0;
+     
 
   }
   else{
@@ -244,7 +275,7 @@ function powerLvlFunc(power){
   
   }
   
-  // setSpeed(powerString, power);
+  setSpeed(powerString, power);
   lineAnimation();
   
  
@@ -254,130 +285,58 @@ function powerLvlFunc(power){
    
 }
 
-// function setSpeed(powerString, power){
-//   console.log(powerString);
-//   if (power < 10){
-//     speed = 10;
-//     return;
-//   }
-//   if (power === 100){
-//     speed = 4;
-//     return;
-//   }
+function setSpeed(powerString, power){
+  console.log(powerString);
+  if (power < 10){
+    speed = 1;
+    return;
+  }
+  if (power === 100){
+    speed = 7;
+    return;
+  }
 
 
-//   switch(powerString[0]){
-//     case "1": 
-//       speed = 0.5;
-//       break;
-//     case "2": 
-//       speed = 1;
-//       break;
-//     case "3": 
-//       speed = 1.5;
-//       break;
-//     case "4": 
-//       speed = 1.5;
-//       break;
-//     case "5": 
-//       speed = 2;
-//       break;
-//     case "6": 
-//       speed = 2.5;
-//       break;
-//     case "7": 
-//       speed = 2.5;
-//       break;
-//     case "8": 
-//       speed = 3;
-//       break;
-//     case "9": 
-//       speed = 3.5;
-//       break;
+  switch(powerString[0]){
+    case "1": 
+      speed = 1;
+      break;
+    case "2": 
+      speed = 2;
+      break;
+    case "3": 
+      speed = 3;
+      break;
+    case "4": 
+      speed = 3;
+      break;
+    case "5": 
+      speed = 4;
+      break;
+    case "6": 
+      speed = 4;
+      break;
+    case "7": 
+      speed = 5;
+      break;
+    case "8": 
+      speed = 5;
+      break;
+    case "9": 
+      speed = 6;
+      break;
 
-//   }
-//   return;
-
-  
-
-// }
-
-//--------------------------------------------------------------------
-
-// function update(goal) {
- 
-      
-//   // ctx.clearRect(20, 20, canvas.width, canvas.height); // Clear canvas
- 
-//   ball.x += ball.dx;
-//   ball.y += ball.dy;
-
-
-//         // Example: Bounce off walls (adjust as needed for your game logic)
-//     if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
-//             ball.dx *= -1;
-//     }
-//     if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
-//             ball.dy *= -1;
-//     }
-
-//     drawBall(); // Redraw the ball
-//     if(ballKill === 1){
-//       ctx.clearRect(0, 0, canvas.width, canvas.height); 
-//       return;
-      
-//     }
-//     console.log("testing: " + ball)
-//     requestAnimationFrame(update); // Continue the loop
-//     }
-
-    
-// function drawBall(){
-//   ctx.beginPath();
-//   ctx.arc(ball.x, ball.y, ball.radius, 0, 2*Math.PI );
-//   ctx.fillStyle = ball.color;
-//   ctx.fill();
-//   ctx.closePath()
- 
+  }
+  return;
+}
 
   
-// }
-    
-
-
-
-
-//-----------------------------------------
-
-
-
-
-    // canvas.addEventListener('click', async function(event) {
-     
-    //   console.log("TEST")
-    //     // Calculate direction towards mouse click
-    //     let angle = Math.atan2(event.clientY - ball.y, event.clientX - ball.x);
-    //     ball.dx = Math.cos(180 * Math.PI / 180) * speed;
-    //     ball.dy = -Math.sin(20 * Math.PI / 180) * speed;
-       
-        
-    //     await sleep(1000);
-    //     ball = {
-    //     x: canvas.width/2,
-    //     y: canvas.height -30,
-    //     radius: 5,
-    //     color: "green",
-    //     dx: 0,
-    //     dy: 0,};
-
-
-    // });
 
 
     
 
 
-// ----------------------------------------------------
+
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -390,16 +349,20 @@ let ballKill = 0;
 let angleMax = 270;
 let killSwitch2 = 0;
 
-let goal = new Goals(0, 0, 50, "green", phoneNum);
+
 
 function testingFunc(){
-    goal.x = getRandomInteger();
-  goal.y = getRandomInteger();
+  for(const goalss of goalsZeroNine){
+    //   goal.x = getRandomInteger();
+    // goal.y = getRandomInteger();
+    goalss.draw();
+    console.log("TESTING GOAL LOOP");
+  }
   undraw = 0;
   ball.draw();
-  goal.draw();
+  
   loop();
-  line.style.visibility = "visible";
+  
 }
 
 async function lineAnimation(){
@@ -409,7 +372,7 @@ async function lineAnimation(){
   line.style.visibility = "visible";
 
   console.log("Pointer!")
-  canvas.addEventListener('click', async function(event) {
+  fireButton.addEventListener('click', async function(event) {
            killSwitch2 = 1;
         let rad = (angleAmount - 90) * Math.PI / 180;
         let dirX = -Math.cos(rad);
@@ -431,15 +394,17 @@ async function lineAnimation(){
 
   }, {once: true});
    if (killSwitch2 === 1){
-    console.log("KILL SWTCIH 2")
+    console.log("KILL SWITCH 2")
         line.style.visibility = "hidden";
+        
         await sleep(1000);
         undraw = 1;
         killSwitch = 0;
         killSwitch2 = 0;
         barHeight = 0;
         angleAmount  = 90;
-        powerButton.addEventListener("mousedown", powerBar);
+       
+        
         
     return;
    }
@@ -460,101 +425,4 @@ async function lineAnimation(){
   requestAnimationFrame(lineAnimation);
 
 }
-
-async function lineAnimation2(){
-  goal.x = getRandomInteger();
-  goal.y = getRandomInteger();
-  undraw = 0;
-  ball.draw();
-  goal.draw();
-  line.style.visibility = "visible";
-  ballKill = 0;
-  loopChecker = 1;
-  bounce = 0;
-  angle = 90;
-
-  
-
-   
-  
-
-  while (loopChecker === 1){
-    
-    canvas.addEventListener('click', async function(event) {
-
-      console.log("TEST")
-        // Calculate direction towards mouse click
-        loop();
-        let rad = (angle - 90) * Math.PI / 180;
-        let dirX = -Math.cos(rad);
-        let dirY = -Math.sin(rad);
-
-        console.log( ball.velY);
-        ball.velX = dirX * speed;
-        ball.velY = dirY * speed;
-        console.log( ball.velX);
-        console.log( "speed: " + speed );
-        
-
-         line.style.visibility = "hidden";
-        await sleep(1000);
-        undraw = 1;
-        ball.velX = 0;
-        ball.velY = 0;
-        
-        ballKill = 1;
-          bounce = 2;
-        loopChecker = 2;
-        killSwitch = 1;
-        barHeight = 0;
-        powerButton.addEventListener("mousedown", powerBar);
-        
-        
-
-
-        
-       
-       
-
-
-    }, { once: true });
-    if (killSwitch2 === 1)
-
-    while(bounce === 0){
-      if (angle > 270)
-      {
-        bounce++;
-      }
-      else{
-        angle++;
-        await sleep(3);
-        line.style.transform = "rotate(" + angle +"deg)";
-      }
-    while(bounce === 1){
-      if (angle < 90)
-      {
-        bounce--;
-
-      }
-      else{
-        angle--
-        await sleep(3);
-        
-        line.style.transform = "rotate(" + angle +"deg)";
-      }
-    }
-    }
-
-  }
- 
-
-  console.log("HOLD IT")
-
- 
- 
- 
-  return;
-  
-}
-
 
