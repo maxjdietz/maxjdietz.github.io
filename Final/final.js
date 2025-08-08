@@ -132,18 +132,25 @@ powerButton.addEventListener("mousedown", powerBar); //hold down power button fo
 let killSwitch = 0;
 
 
-function powerBar(){
+async function powerBar(){
   
   powerButton.addEventListener("mouseup", () => {
+     killSwitch = 1;
     console.log("power bar");
-    powerLvlFunc(barHeight);
-    killSwitch = 1;
     powerButton.removeEventListener('mousedown', powerBar);
+   
+   
+    
+    console.log("HERE?")
+    
+    
+    
       
     }, { once: true });
     if (killSwitch === 1)
     {
-      console.assert("OJK WHAT")
+      console.log("OJK WHAT")
+       powerLvlFunc(barHeight);
       return;
     }
   barHeight += direction * animationSpeed;
@@ -158,6 +165,7 @@ function powerBar(){
     direction = 1;
   }
   powerMeter.style.height = barHeight + "%";
+  
   requestAnimationFrame(powerBar);
   
 }
@@ -456,8 +464,8 @@ async function lineAnimation(){
     }
 
   }
+ 
   killSwitch = 0;
-  
   powerButton.addEventListener("mousedown", powerBar);
   console.log("HOLD IT")
 
