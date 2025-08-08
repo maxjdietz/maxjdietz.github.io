@@ -94,10 +94,11 @@ function loop(){
   if (undraw === 1){
     ctx.clearRect(0, 0, canvas.width, canvas.height); 
     ball.velX = 0;
-    ball.velY =0;
+    ball.velY = 0 
 
     ball.x = 250;
     ball.y = 450;
+    return;
 
   }
   else if((getDistance(ball.x, ball.y, goal.x, goal.y) < goal.radius)){
@@ -127,7 +128,7 @@ powerButton.addEventListener("mousedown", powerBar); //hold down power button fo
 
  let barHeight = 0;
  let direction = 1;
- const animationSpeed = 2;
+ const animationSpeed = 3;
  const maxHeight = 100;
 let killSwitch = 0;
 
@@ -151,6 +152,9 @@ async function powerBar(){
     {
       console.log("OJK WHAT")
        powerLvlFunc(barHeight);
+       testingFunc();
+       await sleep(500);
+        powerMeter.style.height = 0 + "%";
       return;
     }
   barHeight += direction * animationSpeed;
@@ -380,13 +384,84 @@ function sleep(ms) {
 }
 
 
-let bounce = 0;
-let loopChecker = 1;
+let angleAmount = 90;
+let direction2 = 1;
 let ballKill = 0;
+let angleMax = 270;
+let killSwitch2 = 0;
 
 let goal = new Goals(0, 0, 50, "green", phoneNum);
 
+function testingFunc(){
+    goal.x = getRandomInteger();
+  goal.y = getRandomInteger();
+  undraw = 0;
+  ball.draw();
+  goal.draw();
+  loop();
+  line.style.visibility = "visible";
+}
+
 async function lineAnimation(){
+  
+  
+
+  line.style.visibility = "visible";
+
+  console.log("Pointer!")
+  canvas.addEventListener('click', async function(event) {
+           killSwitch2 = 1;
+        let rad = (angleAmount - 90) * Math.PI / 180;
+        let dirX = -Math.cos(rad);
+        let dirY = -Math.sin(rad);
+
+        console.log( ball.velY);
+        ball.velX = dirX * speed;
+        ball.velY = dirY * speed;
+        console.log( ball.velX);
+        console.log( "speed: " + speed );
+        
+        
+        console.log("HIDDEN");
+
+
+        
+   
+        
+
+  }, {once: true});
+   if (killSwitch2 === 1){
+    console.log("KILL SWTCIH 2")
+        line.style.visibility = "hidden";
+        await sleep(1000);
+        undraw = 1;
+        killSwitch = 0;
+        killSwitch2 = 0;
+        barHeight = 0;
+        angleAmount  = 90;
+        powerButton.addEventListener("mousedown", powerBar);
+        
+    return;
+   }
+   console.log("deeptest")
+  angleAmount += direction2 * animationSpeed;
+
+
+  if (angleAmount >= angleMax){
+    angleAmount = angleMax;
+    direction2 = -1;
+  }
+  else if (angleAmount <= 90){
+    angleAmount = 90;
+    direction2 = 1;
+  }
+  line.style.transform = "rotate(" + angleAmount +"deg)";
+  console.log(angleAmount);
+  requestAnimationFrame(lineAnimation);
+
+}
+
+async function lineAnimation2(){
   goal.x = getRandomInteger();
   goal.y = getRandomInteger();
   undraw = 0;
@@ -397,6 +472,9 @@ async function lineAnimation(){
   loopChecker = 1;
   bounce = 0;
   angle = 90;
+
+  
+
    
   
 
@@ -419,14 +497,17 @@ async function lineAnimation(){
         
 
          line.style.visibility = "hidden";
-        await sleep(2000);
+        await sleep(1000);
         undraw = 1;
         ball.velX = 0;
         ball.velY = 0;
-        await sleep(100)
+        
         ballKill = 1;
           bounce = 2;
         loopChecker = 2;
+        killSwitch = 1;
+        barHeight = 0;
+        powerButton.addEventListener("mousedown", powerBar);
         
         
 
@@ -437,6 +518,7 @@ async function lineAnimation(){
 
 
     }, { once: true });
+    if (killSwitch2 === 1)
 
     while(bounce === 0){
       if (angle > 270)
@@ -465,8 +547,7 @@ async function lineAnimation(){
 
   }
  
-  killSwitch = 0;
-  powerButton.addEventListener("mousedown", powerBar);
+
   console.log("HOLD IT")
 
  
