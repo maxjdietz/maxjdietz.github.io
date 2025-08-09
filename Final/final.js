@@ -8,7 +8,14 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const recharge = document.getElementById("charging");
 const phoneNumContainer = document.querySelector(".phoneNum")
-const bgColorCanvas = "rgba(121, 224, 131, 0.5)";
+const bgColorCanvas = "rgba(151, 226, 158, 0.5)";
+const submitButton = document.getElementById("Submit");
+const resetButton = document.getElementById("Reset");
+const startButton = document.getElementById("Start");
+const gameScreen = document.getElementById("gameScreen");
+phoneNumContainer.textContent = "";
+
+
 
 
 let speed = 5;
@@ -21,11 +28,34 @@ let undraw = 0;
 let phoneNum = 0;
 
 
+
+
 function getRandomInteger() {
   min = Math.ceil(100); // Ensure min is an integer
   max = Math.floor(400); // Ensure max is an integer
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+startButton.addEventListener("click", startGame);
+function startGame(){
+  phoneNumContainer.textContent = "";
+  canvas.style.backgroundColor = "black";
+  gameScreen.style.color = "white";
+  submitButton.addEventListener("click", submitFunc);
+  gameScreen.textContent = "Hold down POWER BUTTON!";
+  powerButton.addEventListener("mousedown", powerBar);
+
+}
+
+function submitFunc(){
+  console.log(digitCounter)
+  if (digitCounter === 10){
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    gameScreen.textContent = "You have inputted the following valid phone number: " + phoneNumContainer.textContent +"!, Press Reset to Play Again!";
+  }
+  else
+    alert("Invalid Phone Number!");
+}
+
 
 // let ball = {
 //     x: canvas.width/2,
@@ -137,20 +167,35 @@ function loop(){
   }
   for(i = 0; i < 10; i++){
     if((getDistance(ball.x, ball.y, goalsZeroNine[i].x, goalsZeroNine[i].y) < goalsZeroNine[i].radius)){
-      resetBall(1, i);
-      digitCounter++;
-      if(digitCounter === 11)
-      {
-        alert("You have submitted the following phone number: " + phoneNumContainer.textContent);
-        
+      
+      if (digitCounter == 10){
+      alert("Invalid Phone Number, character limit exceeded!");
+      resetBall(0, 12);
+      
       }
+      else{
+        digitCounter++;
+        resetBall(1, i);
+      }
+      
+      
+
         return;
   }
 
 }
 if ((getDistance(ball.x, ball.y, goalsZeroNine[10].x, goalsZeroNine[10].y) < goalsZeroNine[10].radius)){
 
-    phoneNumContainer.textContent = oldTextContent;
+     let newNum = phoneNumContainer.textContent.slice(0,phoneNumContainer.textContent.length-1);
+     phoneNumContainer.textContent = newNum;
+     if (digitCounter === 0){
+      digitCounter = 0;
+     }
+     else{
+      digitCounter--;
+     }
+     
+     console.log(newNum);
     resetBall(0, 10);
 
       return;
@@ -172,15 +217,17 @@ if ((getDistance(ball.x, ball.y, goalsZeroNine[10].x, goalsZeroNine[10].y) < goa
 
   
 }
-function resetBall(num, index){
-  console.log("resetTEST")
+async function resetBall(num, index){
+  
   if (num === 1){
-    oldTextContent = phoneNumContainer.textContent;
+    console.log("resetTEST")
+    
       phoneNumContainer.textContent = phoneNumContainer.textContent + goalsZeroNine[index].number;
   }
   if (index !== 12){
     goalsZeroNine[index].color = "red";
     goalsZeroNine[index].draw();
+    goalsZeroNine[index].color = "green";
     
 
   }
@@ -190,17 +237,18 @@ function resetBall(num, index){
     ball.x = 250;
     ball.y = 450;
     ball.draw();
-    
+    await sleep(1000);
    recharge.style.visibility = "hidden";
+    
    powerButton.addEventListener("mousedown", powerBar);
-   goalsZeroNine[index].color = "green";
+  
     
 }
 
 
 
 //STEP1---------------------------------------------------------
-powerButton.addEventListener("mousedown", powerBar); //hold down power button for power
+ //hold down power button for power
 
  let barHeight = 0;
  let direction = 1;
@@ -211,11 +259,14 @@ let killSwitch = 0;
 
 
 async function powerBar(){
+  gameScreen.style.color = "white";
+  gameScreen.textContent = ""
   
   powerButton.addEventListener("mouseup", () => {
     recharge.style.visibility = "visible";
      killSwitch = 1;
     console.log("power bar");
+    fireButton.disabled = false;
     powerButton.removeEventListener('mousedown', powerBar);
 
    
@@ -288,42 +339,42 @@ function powerLvlFunc(power){
 function setSpeed(powerString, power){
   console.log(powerString);
   if (power < 10){
-    speed = 1;
+    speed = 2;
     return;
   }
   if (power === 100){
-    speed = 7;
+    speed = 10;
     return;
   }
 
 
   switch(powerString[0]){
     case "1": 
-      speed = 1;
+      speed = 3;
       break;
     case "2": 
-      speed = 2;
+      speed = 4;
       break;
     case "3": 
-      speed = 3;
+      speed = 4;
       break;
     case "4": 
-      speed = 3;
+      speed = 5;
       break;
     case "5": 
-      speed = 4;
+      speed = 6;
       break;
     case "6": 
-      speed = 4;
+      speed = 7;
       break;
     case "7": 
-      speed = 5;
+      speed = 7;
       break;
     case "8": 
-      speed = 5;
+      speed = 8;
       break;
     case "9": 
-      speed = 6;
+      speed = 9;
       break;
 
   }
@@ -373,6 +424,7 @@ async function lineAnimation(){
 
   console.log("Pointer!")
   fireButton.addEventListener('click', async function(event) {
+    fireButton.disabled = true;
            killSwitch2 = 1;
         let rad = (angleAmount - 90) * Math.PI / 180;
         let dirX = -Math.cos(rad);

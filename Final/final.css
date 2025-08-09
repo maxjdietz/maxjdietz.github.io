@@ -26,6 +26,80 @@ article{
     padding: 2vw;
    
 }
+.buttons{
+    
+     background-color: grey;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1), inset 0 0 40px rgb(49, 48, 48);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 7vw;
+    height: 15vw;
+    margin-left: 42vw;
+    margin-top: 7vw;
+    padding: 2mm;
+    border-radius: 15%;
+    border: 1mm solid black;
+
+    
+
+}
+#Start{
+    
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    border: 1mm solid black;
+    width: 100%;
+    height:4.5vw;
+    font-size: 150%;
+    border-radius: 15%;
+     background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1), inset 0 0 40px rgb(49, 48, 48);
+}
+
+
+#Reset{
+    border: 1mm solid black;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+font-size: 150%;
+       width: 100%;
+    height:4.5vw;
+    border-radius: 15%;
+     background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1), inset 0 0 40px rgb(49, 48, 48);
+}
+
+#Submit{
+    border: 1mm solid black;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+font-size: 150%;
+       width: 100%;
+    height:4.5vw;
+    border-radius: 15%;
+     background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1), inset 0 0 40px rgb(49, 48, 48);
+}
+#Start:hover{
+    transition: all 0.5s;
+    border: 1mm solid black;
+    background-color: rgb(159, 143, 143);
+    color: black;
+}
+#Submit:hover{
+    transition: all 0.5s;
+    border: 1mm solid black;
+    background-color: rgb(159, 143, 143);
+    color: black;
+}
+#Reset:hover{
+    transition: all 0.5s;
+    border: 1mm solid black;
+    background-color: rgb(159, 143, 143);
+    color: black;
+}
+
+
+
 canvas{
     
 }
@@ -50,6 +124,11 @@ canvas{
 #gameScreen{
     position: absolute;
         display: flex;
+        text-align: center;
+        line-height: 500px;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 175%;
+        font-style: bold;
     margin: 10px;
     align-items: left;
     justify-content: center;
@@ -64,7 +143,7 @@ canvas{
 .meterContainer
 {
     margin-left: 1vw;
-    margin-top: 0.5vw;
+    margin-top: 1vw;
   
     position: relative;
     align-items: center;
@@ -125,7 +204,7 @@ canvas{
     visibility: hidden;
         position: absolute;
    color: rgb(0, 0, 0);
-   margin-left: 32.75vw;
+    margin-left: 32.75vw;
     margin-top: 20vw;
      width: 7vw;
     height: 5vw;
@@ -158,13 +237,20 @@ canvas{
     position: absolute;
     width: 6vw;
     height: 6vw;
-    margin-left: 33.25vw;
+    margin-left: 33.3vw;
     margin-top: 26vw;
     border-radius: 50%;
-    color: grey;
+    color: rgb(79, 71, 71);
+    font-size: 150%;
     background-color: black;
       font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-style: bold;
+}
+#Fire:hover{
+    transition: all 0.5s;
+    color: rgb(119, 110, 110);
+    
+
 }
 
 
