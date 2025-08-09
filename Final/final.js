@@ -248,7 +248,7 @@ if ((getDistance(ball.x, ball.y, goalsZeroNine[10].x, goalsZeroNine[10].y) < goa
   requestAnimationFrame(loop);
 
 }
-
+console.log("TESTING")
 //resets ball and colors correspondant to object ball interacts with
 async function resetBall(num, index){
   
