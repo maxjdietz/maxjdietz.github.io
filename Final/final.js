@@ -204,7 +204,7 @@ let oldTextContent = phoneNumContainer.textContent;
 function loop(){
   //edge case
   if (undraw === 1){
-    resetBall(0, 12)
+    resetBall(0, 13)
     return;
 
   }
@@ -257,15 +257,15 @@ async function resetBall(num, index){
     
       phoneNumContainer.textContent = phoneNumContainer.textContent + goalsZeroNine[index].number;
   }
-  if (index !== 12){
+  if (index !== 12 && index != 13){
     goalsZeroNine[index].color = "red";
     goalsZeroNine[index].draw();
     goalsZeroNine[index].color = "green";
     
 
   }
-  else{
-    console.log("TEST")
+  else if (index === 12){
+    
     goalsZeroNine[10].color = "red";
     goalsZeroNine[10].draw();
     goalsZeroNine[10].color = "grey";
