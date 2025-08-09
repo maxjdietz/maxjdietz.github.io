@@ -13,60 +13,88 @@ const submitButton = document.getElementById("Submit");
 const resetButton = document.getElementById("Reset");
 const startButton = document.getElementById("Start");
 const gameScreen = document.getElementById("gameScreen");
-phoneNumContainer.textContent = "";
+phoneNumContainer.textContent = "Input Your Phone Number!";
+
+
+startButton.style.backgroundColor = "gold";
+
+//many initializers 
+let speed = 5; //ball
+let digitCounter = 0; //phone number digit
+const speedOfMeter = 3; //afraid to touch honestly
+
+
+let angle = 90; 
+let undraw = 0; //canvas edge case
+let phoneNum = 0; 
 
 
 
-
-let speed = 5;
-let digitCounter = 0;
-const speedOfMeter = 3;
-let loopBar = 1;
-let holdDown = true;
-let angle = 90;
-let undraw = 0;
-let phoneNum = 0;
-
-
-
-
+//------------------RANDOM INT----------------------
 function getRandomInteger() {
   min = Math.ceil(100); // Ensure min is an integer
   max = Math.floor(400); // Ensure max is an integer
   return Math.floor(Math.random() * (max - min + 1)) + min;
+
+
+  //used like once
+  function random(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+}
+//Used for collisions
+let getDistance = function(x1, y1, x2, y2){
+  var result = Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
+  return result;
+}
+//-------------------------------------------------------
+
+//initalized event listeners, ONLY THESE TWO WHEN STARTING
 startButton.addEventListener("click", startGame);
+resetButton.addEventListener("click", resetGame);
+
+
+//3 Side Button Functions
+
+
+function resetGame(){
+  window.location.reload();
+}
+
+//Enables other buttons, starts the entire game, can only click once
 function startGame(){
+  
+  startButton.removeEventListener("click", startGame) 
+ 
+  startButton.style.backgroundColor = "white";
   phoneNumContainer.textContent = "";
   canvas.style.backgroundColor = "black";
   gameScreen.style.color = "white";
+//---------------------------------------
+//ORDER PROPERLY
   submitButton.addEventListener("click", submitFunc);
   gameScreen.textContent = "Hold down POWER BUTTON!";
   powerButton.addEventListener("mousedown", powerBar);
 
 }
-
+//DISABLES ALL BUTTONS WHEN CONFIRMED EXECEPT RESET!!!
 function submitFunc(){
-  console.log(digitCounter)
+  
   if (digitCounter === 10){
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    gameScreen.textContent = "You have inputted the following valid phone number: " + phoneNumContainer.textContent +"!, Press Reset to Play Again!";
+    gameScreen.style.lineHeight = "75px";
+    resetButton.style.backgroundColor = "gold";
+    powerButton.disabled = true;
+    fireButton.disabled = true;
+    startButton.disabled = true;
+    submitButton.disabled = true;
+    gameScreen.textContent = "You have inputted the following valid phone number: " + phoneNumContainer.textContent.slice(0, 3) + "-" + phoneNumContainer.textContent.slice(3, 6) +  "-" + phoneNumContainer.textContent.slice(6, 10) + ". Press Reset to Play Again!";
   }
   else
     alert("Invalid Phone Number!");
 }
 
-
-// let ball = {
-//     x: canvas.width/2,
-//     y: canvas.height -30,
-//     radius: 5,
-//     color: "green",
-//     dx: 0,
-//     dy: 0
-//   };
-
-
+//GOAL CLASS-------------------------------------------------
 class Goals{
   constructor(x, y , radius, color, number){
    this.x = x;
@@ -97,6 +125,10 @@ class Goals{
   }
 
 }
+//---------------------------------------------------
+
+
+//BALL CLASS--------------------------------------------------------
 class Ball{
   constructor(x, y, velX, velY, color, size){
     this.x = x;
@@ -113,6 +145,7 @@ class Ball{
     ctx.fill();
     }
     update(){
+      //collisions with da walls
       if(this.x + this.size >= canvas.width){
         this.velX = -this.velX;
         }
@@ -129,11 +162,19 @@ class Ball{
       this.y += this.velY;
       }
 }
-function random(min, max){
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+//---------------------------------------------------------------------
+
+
+
+
+
+
+//initializers for bug testing and im also afraid to remove them
 let ball = new Ball(250, 450, 0, 0, "red", 20);
 let goal = new Goals(0, 0, 50, "green", phoneNum);
+//----------------------------------
+
+// GOAL INITIALIZERS + COORDS
 let loopGoal = 0;
 const goalsZeroNine = [];
 const goalsXCoords = [50, 125, 100, 175, 150, 325, 400, 375, 450, 350]
@@ -158,32 +199,30 @@ goalsZeroNine.push(backspace);
 let oldTextContent = phoneNumContainer.textContent;
 
 
+
+//STUPID-------------------------------------------------
 function loop(){
+  //edge case
   if (undraw === 1){
-    // ctx.clearRect(0, 0, canvas.width, canvas.height); 
     resetBall(0, 12)
     return;
 
   }
+  //checks for goal collisions
   for(i = 0; i < 10; i++){
     if((getDistance(ball.x, ball.y, goalsZeroNine[i].x, goalsZeroNine[i].y) < goalsZeroNine[i].radius)){
-      
       if (digitCounter == 10){
       alert("Invalid Phone Number, character limit exceeded!");
-      resetBall(0, 12);
-      
+      resetBall(0, 12);//too many numbers!
       }
       else{
         digitCounter++;
         resetBall(1, i);
       }
-      
-      
-
-        return;
+    return;
   }
-
 }
+// checks if backspace goal (anotha edge case basically)
 if ((getDistance(ball.x, ball.y, goalsZeroNine[10].x, goalsZeroNine[10].y) < goalsZeroNine[10].radius)){
 
      let newNum = phoneNumContainer.textContent.slice(0,phoneNumContainer.textContent.length-1);
@@ -194,16 +233,10 @@ if ((getDistance(ball.x, ball.y, goalsZeroNine[10].x, goalsZeroNine[10].y) < goa
      else{
       digitCounter--;
      }
-     
-     console.log(newNum);
-    resetBall(0, 10);
-
+  
+    resetBall(0, 12);
       return;
 }
-
-  
- 
- 
  ctx.fillStyle = bgColorCanvas;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ball.draw();
@@ -211,12 +244,12 @@ if ((getDistance(ball.x, ball.y, goalsZeroNine[10].x, goalsZeroNine[10].y) < goa
     goalsZeroNine[i].draw();
   }
   ball.update();
-  console.log("FUCK")
- 
+  
   requestAnimationFrame(loop);
 
-  
 }
+
+//resets ball and colors correspondant to object ball interacts with
 async function resetBall(num, index){
   
   if (num === 1){
@@ -231,9 +264,15 @@ async function resetBall(num, index){
     
 
   }
-        ball.velX = 0;
+  else{
+    console.log("TEST")
+    goalsZeroNine[10].color = "red";
+    goalsZeroNine[10].draw();
+    goalsZeroNine[10].color = "grey";
+  
+  }
+    ball.velX = 0;
     ball.velY = 0 
- 
     ball.x = 250;
     ball.y = 450;
     ball.draw();
@@ -241,15 +280,14 @@ async function resetBall(num, index){
    recharge.style.visibility = "hidden";
     
    powerButton.addEventListener("mousedown", powerBar);
-  
-    
+
 }
 
 
 
-//STEP1---------------------------------------------------------
- //hold down power button for power
 
+
+ //some animation initializers
  let barHeight = 0;
  let direction = 1;
  const animationSpeed = 3;
@@ -257,12 +295,15 @@ async function resetBall(num, index){
 let killSwitch = 0;
 
 
-
+//FUCK ASS POWER BAR CAUSED ALL OF MY EARLY STRUGGLES
+//animated powerBar and sends signals and power levels accordingly
 async function powerBar(){
   gameScreen.style.color = "white";
   gameScreen.textContent = ""
   
   powerButton.addEventListener("mouseup", () => {
+    fireButton.style.backgroundColor = "rgb(135, 9, 9)";
+    fireButton.style.color = "white";
     recharge.style.visibility = "visible";
      killSwitch = 1;
     console.log("power bar");
@@ -279,7 +320,6 @@ async function powerBar(){
     }, { once: true });
     if (killSwitch === 1)
     {
-      console.log("OJK WHAT")
        powerLvlFunc(barHeight);
        testingFunc();
        
@@ -288,7 +328,7 @@ async function powerBar(){
     }
   barHeight += direction * animationSpeed;
 
-
+powerLevel.textContent = barHeight + "%";
   if (barHeight >= maxHeight){
     barHeight = maxHeight;
     direction = -1;
@@ -302,25 +342,21 @@ async function powerBar(){
   requestAnimationFrame(powerBar);
   
 }
+//STUPID----------------------------------------
 
 
-let getDistance = function(x1, y1, x2, y2){
-  var result = Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
-  return result;
-}
 // --------------------------------------------------------
 //STEP 2---------------------------------------------------------
-//assigns value 0-9 based off power level
+//assigns power bar percentage and sets speed + leads to animation of angle line
 function powerLvlFunc(power){
   let powerString = power.toString();
   if(power < 10){
-     powerLevel.textContent = 0;
-     
-
+     powerLevel.textContent = barHeight + "%";
+    
   }
   else{
     
-    powerLevel.textContent = powerString[0];
+    powerLevel.textContent = barHeight + "%";
     phoneNum = Number(powerString[0]);
    
   
@@ -335,9 +371,10 @@ function powerLvlFunc(power){
   
    
 }
-
+//SETS SPEED RELATIVE TO POWER BAR 
 function setSpeed(powerString, power){
-  console.log(powerString);
+  
+//takes first digit as string and sets according, edge cases for < 10 and 100
   if (power < 10){
     speed = 2;
     return;
@@ -346,8 +383,6 @@ function setSpeed(powerString, power){
     speed = 10;
     return;
   }
-
-
   switch(powerString[0]){
     case "1": 
       speed = 3;
@@ -393,7 +428,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-
+//animation Initializers
 let angleAmount = 90;
 let direction2 = 1;
 let ballKill = 0;
@@ -415,7 +450,7 @@ function testingFunc(){
   loop();
   
 }
-
+//another pain in the ass, animates the line angle!
 async function lineAnimation(){
   
   
@@ -424,6 +459,8 @@ async function lineAnimation(){
 
   console.log("Pointer!")
   fireButton.addEventListener('click', async function(event) {
+    fireButton.style.backgroundColor = "black";
+    fireButton.style.color ="rgb(79, 71, 71)";
     fireButton.disabled = true;
            killSwitch2 = 1;
         let rad = (angleAmount - 90) * Math.PI / 180;
@@ -477,4 +514,4 @@ async function lineAnimation(){
   requestAnimationFrame(lineAnimation);
 
 }
-
+//:D
